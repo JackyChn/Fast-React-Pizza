@@ -1,3 +1,6 @@
+import { formatCurrency } from "../../utils/helpers";
+import PropTpes from "prop-types";
+
 function CartItem({ item }) {
   const { pizzaId, name, quantity, totalPrice } = item;
 
@@ -12,5 +15,9 @@ function CartItem({ item }) {
     </li>
   );
 }
+
+CartItem.propTypes = {
+  item: PropTpes.object.isRequired,
+};
 
 export default CartItem;
