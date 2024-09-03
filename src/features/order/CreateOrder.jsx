@@ -36,7 +36,7 @@ function CreateOrder() {
   const [withPriority, setWithPriority] = useState(false);
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  // const cart = fakeCart;
+  const cart = fakeCart;
   const formErrors = useActionData();
 
   return (
@@ -92,7 +92,7 @@ function CreateOrder() {
 }
 
 export async function action({ request }) {
-  const formData = await request.formData();
+  const formData = await request.formData(); // must be await or "object is not iterable" error
   const data = Object.fromEntries(formData);
   const order = {
     ...data,
@@ -102,10 +102,10 @@ export async function action({ request }) {
   const errors = {};
   if (!isValidPhone(order.phone))
     errors.phone = "Please enter the correct phone number.";
-  if (Object.keys(errors).length > 0) return errors;
+  if (Object.keys(errors).length > 0) return errors; // there are errors
 
   // no error, create new order & redirect
-  const newOrder = await createOrder(order);
+  const newOrder = await createOrder(order); // newOrder is what has been post
   return redirect(`/order/${newOrder.id}`);
 }
 
