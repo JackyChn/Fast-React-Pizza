@@ -10,7 +10,7 @@ function AppLayout() {
   return (
     <div className="grid h-screen grid-cols-1 grid-rows-[auto_1fr_auto]">
       <Header />
-      <main className="overflow-auto bg-blue-300">
+      <main className="overflow-auto bg-blue-200">
         {isLoading ? <Loader /> : <Outlet />}
       </main>
       <CartOverview />

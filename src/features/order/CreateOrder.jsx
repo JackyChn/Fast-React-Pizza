@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 const isValidPhone = (str) =>
   /^\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}$/.test(
@@ -49,13 +50,13 @@ function CreateOrder() {
         {/* name input box */}
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input type="text" name="customer" required className="input" />
         </div>
         {/* number input box */}
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type="tel" name="phone" required className="input" />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -63,7 +64,13 @@ function CreateOrder() {
         <div>
           <label>Address</label>
           <div>
-            <input type="text" name="address" required />
+            <input
+              placeholder="Address..."
+              type="text"
+              name="address"
+              required
+              className="input"
+            />
           </div>
         </div>
         {/* priority checkout box */}
@@ -82,12 +89,9 @@ function CreateOrder() {
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
         </div>
         <div>
-          <button
-            disabled={isSubmitting}
-            className="inline-block rounded-[10px] bg-yellow-500 px-4 py-3 font-semibold uppercase tracking-wide text-stone-800 duration-300 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-offset-2 disabled:cursor-not-allowed"
-          >
+          <Button disabled={isSubmitting}>
             {isSubmitting ? "Placing order..." : "Place order"}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
