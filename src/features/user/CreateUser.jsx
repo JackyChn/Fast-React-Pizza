@@ -24,7 +24,7 @@ function CreateUser() {
 
       {username !== "" && (
         <div className="mt-2 flex justify-center">
-          <Button>Start ordering</Button>
+          <Button type="primary">Start ordering</Button>
         </div>
       )}
     </form>
