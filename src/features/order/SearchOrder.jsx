@@ -17,7 +17,7 @@ function SearchOrder() {
         placeholder="Search order #"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
-        className="rounded-[3px] bg-yellow-50 px-4 py-2 text-sm placeholder:text-stone-400"
+        className="rounded-[10px] bg-yellow-50 px-4 py-2 text-sm placeholder:text-stone-400"
       ></input>
       <Button type="primary">Search</Button>
     </form>

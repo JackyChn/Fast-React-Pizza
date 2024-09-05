@@ -41,40 +41,56 @@ function CreateOrder() {
   const formErrors = useActionData();
 
   return (
-    <div>
-      <h2>Ready to order? Let us go!</h2>
+    <div className="px-4 py-6">
+      <h2 className="mb-8 text-xl font-semibold">Ready to order? Let us go!</h2>
 
       {/* <Form method="POST" action="/order/new"> */}
       {/* By default, the action function is dismissed caz it will submit to the closest path, which is "/order/new" now, and whenever the form is submitted, the action is called */}
       <Form method="POST" action="/order/new">
         {/* name input box */}
-        <div>
-          <label>First Name</label>
-          <input type="text" name="customer" required className="input" />
+        <div className="mb-5 flex gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">First Name</label>
+          <input
+            type="text"
+            name="customer"
+            required
+            className="input grow"
+            placeholder="FirstName..."
+          />
         </div>
         {/* number input box */}
-        <div>
-          <label>Phone number</label>
-          <div>
-            <input type="tel" name="phone" required className="input" />
+        <div className="mb-5 flex gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Phone number</label>
+          <div className="grow">
+            <input
+              type="tel"
+              name="phone"
+              required
+              className="input w-full"
+              placeholder="Phone..."
+            />
+            {formErrors?.phone && (
+              <p className="mt-2 rounded-[5px] bg-red-100 px-3 py-1 text-xs text-red-400">
+                {formErrors.phone}
+              </p>
+            )}
           </div>
-          {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
         {/* address input box */}
-        <div>
-          <label>Address</label>
-          <div>
+        <div className="mb-5 flex gap-2 sm:flex-row sm:items-center">
+          <label className="sm:basis-40">Address</label>
+          <div className="grow">
             <input
               placeholder="Address..."
               type="text"
               name="address"
               required
-              className="input"
+              className="input w-full"
             />
           </div>
         </div>
         {/* priority checkout box */}
-        <div>
+        <div className="mb-12 flex gap-5">
           <input
             type="checkbox"
             name="priority"
@@ -82,7 +98,9 @@ function CreateOrder() {
             // value={withPriority}
             // onChange={(e) => setWithPriority(e.target.checked)}
           />
-          <label htmlFor="priority">Want to yo give your order priority?</label>
+          <label htmlFor="priority" className="font-medium">
+            Want to yo give your order priority?
+          </label>
         </div>
         {/* cart */}
         <div>

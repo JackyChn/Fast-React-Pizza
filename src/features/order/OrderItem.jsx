@@ -1,12 +1,12 @@
 import { formatCurrency } from "../../utils/helpers";
 import PropTpes from "prop-types";
 
-function OrderItem({ item, isLoadingIngredients, ingredients }) {
-  const { quantity, name, totalPrice } = item;
+function OrderItem({ pizza, isLoadingIngredients, ingredients }) {
+  const { quantity, name, totalPrice } = pizza;
 
   return (
-    <li>
-      <div>
+    <li className="py-3">
+      <div className="flex items-center justify-between gap-4 text-sm font-bold">
         <p>
           <span>{quantity}&times;</span> {name}
         </p>
@@ -17,7 +17,7 @@ function OrderItem({ item, isLoadingIngredients, ingredients }) {
 }
 
 OrderItem.propTypes = {
-  item: PropTpes.object.isRequired,
+  pizza: PropTpes.object.isRequired,
   isLoadingIngredients: PropTpes.bool,
   ingredients: PropTpes.node,
 };
