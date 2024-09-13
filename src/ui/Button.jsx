@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-function Button({ children, disabled, to, type }) {
+function Button({ children, disabled, to, type, onClick }) {
   const base =
     "flex h-[36px] items-center rounded-[10px] bg-yellow-400 font-semibold uppercase tracking-wide text-stone-800 duration-300 hover:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-500 focus:ring-offset-2 disabled:cursor-not-allowed";
 
@@ -17,6 +17,12 @@ function Button({ children, disabled, to, type }) {
         {children}
       </Link>
     );
+  if (onClick)
+    return (
+      <button onClick={onClick} disabled={disabled} className={styles[type]}>
+        {children}
+      </button>
+    );
   return (
     <button disabled={disabled} className={styles[type]}>
       {children}
@@ -29,6 +35,7 @@ Button.propTypes = {
   disabled: PropTypes.bool,
   to: PropTypes.string,
   type: PropTypes.string,
+  onClick: PropTypes.func,
 };
 
 export default Button;
