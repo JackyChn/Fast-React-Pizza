@@ -4,11 +4,13 @@ import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { addItem, getCurrentQuantityById } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
+import UpdateItemQuanatity from "../cart/UpdateItemQuanatity";
 
 function MenuItem({ pizza }) {
   const dispatch = useDispatch();
 
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
+  const pizzaQuantity = useSelector(getCurrentQuantityById(id));
 
   // const currentQuantity = useSelector(getCurrentQuantityById(id));
   // const isInCart = currentQuantity > 0;
@@ -48,7 +50,10 @@ function MenuItem({ pizza }) {
           )}
 
           {currentQuantity > 0 ? (
-            <DeleteItem pizzaId={id} />
+            <div className="flex justify-between gap-6">
+              <UpdateItemQuanatity pizzaId={id} quantity={pizzaQuantity} />
+              <DeleteItem pizzaId={id} />
+            </div>
           ) : (
             !soldOut && (
               <Button type="small" onClick={handleAddToCart}>
