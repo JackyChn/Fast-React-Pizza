@@ -1,17 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  // cart: [],
+  cart: [],
 
-  cart: [
-    {
-      pizzaId: 12,
-      name: "Mediterranean",
-      quantity: 2,
-      unitPrice: 16,
-      totalPrice: 32,
-    },
-  ],
+  // cart: [
+  //   {
+  //     pizzaId: 12,
+  //     name: "Mediterranean",
+  //     quantity: 2,
+  //     unitPrice: 16,
+  //     totalPrice: 32,
+  //   },
+  // ],
 };
 
 const cartSlice = createSlice({
@@ -55,6 +55,7 @@ export const {
 
 export default cartSlice.reducer;
 
+// sate here in all functions pointing to entire redux store, not exclusively to the cartSlice state
 export const getCart = (state) => state.cart.cart;
 
 export const getTotalCartQuantity = (state) =>
@@ -65,3 +66,22 @@ export const getTotalCartPrice = (state) =>
 
 export const getCurrentQuantityById = (id) => (state) =>
   state.cart.cart.find((item) => item.pizzaId === id)?.quantity ?? 0;
+
+/*
+export const getCurrentQuantityById = function(id) {
+  return function(state) {
+    // Find the pizza item in the cart by its pizzaId
+    const pizzaItem = state.cart.cart.find(function(item) {
+      return item.pizzaId === id; // Check if the item matches the given id
+    });
+    
+    // Return the quantity if found, otherwise return 0
+    if (pizzaItem) {
+      return pizzaItem.quantity; // Return the quantity of the found pizza
+    } else {
+      return 0; // Return 0 if the pizza is not found
+    }
+  };
+};
+
+*/
