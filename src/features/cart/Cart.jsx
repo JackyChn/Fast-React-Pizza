@@ -4,9 +4,12 @@ import CartItem from "./CartItem";
 import EmptyCart from "./EmptyCart";
 import { useDispatch, useSelector } from "react-redux";
 import { clearCart, getCart } from "./cartSlice";
-import Spinner from "../../ui/Spinner";
+import Modal from "../../ui/Modal";
+import TestForm from "../../ui/TestForm";
+import { useState } from "react";
 
 function Cart() {
+  const [isShowModal, setIsShowModal] = useState(false);
   const username = useSelector((store) => store.user.username);
   const cart = useSelector(getCart);
   const dispatch = useDispatch();
@@ -31,13 +34,30 @@ function Cart() {
         ))}
       </ul>
 
-      <div className="mt-6 flex space-x-2">
+      <div className="mt-6 flex gap-2 space-x-2">
         <Button to="/order/new" type="primary">
           Order pizzas
         </Button>
         <Button type="secondary" onClick={handleClear}>
           Clear cart
         </Button>
+
+        <button
+          onClick={() => {
+            setIsShowModal((isShowModal) => !isShowModal);
+          }}
+        >
+          Show Modal
+        </button>
+        {isShowModal && (
+          <Modal
+            onClose={() => {
+              setIsShowModal((isShowModal) => !isShowModal);
+            }}
+          >
+            <TestForm />
+          </Modal>
+        )}
       </div>
     </div>
   );
